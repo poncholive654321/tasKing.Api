@@ -1,0 +1,6 @@
+C:\Users\luis\Documents\Visual Studio 2013\Projects\Tasking.Api\Tasking.Web\bin\Tasking.Web.dll.config
+C:\Users\luis\Documents\Visual Studio 2013\Projects\Tasking.Api\Tasking.Web\bin\Tasking.Web.dll
+C:\Users\luis\Documents\Visual Studio 2013\Projects\Tasking.Api\Tasking.Web\bin\Tasking.Web.pdb
+C:\Users\luis\Documents\Visual Studio 2013\Projects\Tasking.Api\Tasking.Web\obj\Debug\Tasking.Web.csprojResolveAssemblyReference.cache
+C:\Users\luis\Documents\Visual Studio 2013\Projects\Tasking.Api\Tasking.Web\obj\Debug\Tasking.Web.dll
+C:\Users\luis\Documents\Visual Studio 2013\Projects\Tasking.Api\Tasking.Web\obj\Debug\Tasking.Web.pdb
