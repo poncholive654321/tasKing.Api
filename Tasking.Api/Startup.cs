@@ -37,7 +37,7 @@ namespace Tasking.API
             // Token Generation
             app.UseOAuthAuthorizationServer(OAuthServerOptions);
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
-
+            
         }
     }
 }

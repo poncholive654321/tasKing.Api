@@ -20,11 +20,12 @@ namespace Tasking.Api.Providers
         {
 
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
+            IdentityUser user = null;
 
             using (AuthRepository _repo = new AuthRepository())
             {
-                IdentityUser user = await _repo.FindUser(context.UserName, context.Password);
-
+                user = await _repo.FindUser(context.UserName, context.Password);
+                
                 if (user == null)
                 {
                     context.SetError("invalid_grant", "The user name or password is incorrect.");
@@ -33,9 +34,11 @@ namespace Tasking.Api.Providers
             }
 
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            identity.AddClaim(new Claim("sub", context.UserName));
+            //identity.AddClaim(new Claim("id", user.Id));
             identity.AddClaim(new Claim("role", "user"));
-
+            //identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
+            identity.AddClaim(new Claim(ClaimTypes.Name, user.Id));
+            
             context.Validated(identity);
         }
     }
