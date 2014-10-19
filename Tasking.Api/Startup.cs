@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
-using Tasking.Api.Providers;
+using Tasking.API.Providers;
 
 [assembly: OwinStartup(typeof(Tasking.API.Startup))]
 namespace Tasking.API

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Tasking.API.Models
+namespace Tasking.API.DAL
 {
     public class UserModel
     {

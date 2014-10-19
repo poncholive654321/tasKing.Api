@@ -22,6 +22,16 @@ app.config(function ($routeProvider) {
         templateUrl: "/app/views/orders.html"
     });
 
+    $routeProvider.when("/projects", {
+        controller: "projectsController",
+        templateUrl: "/app/views/projects.html"
+    });
+
+    $routeProvider.when("/project", {
+        controller: "projectController",
+        templateUrl: "/app/views/project.html"
+    });
+
     $routeProvider.otherwise({ redirectTo: "/home" });
 });
 

@@ -6,18 +6,20 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Tasking.API.Models;
+using Tasking.API.DAL;
 
-namespace Tasking.Api.Controllers
+namespace Tasking.API.Controllers
 {
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
         private AuthRepository _repo = null;
+        private TaskingContext _db = null;
 
         public AccountController()
         {
             _repo = new AuthRepository();
+            _db = new TaskingContext();
         }
 
         // POST api/Account/Register
@@ -38,6 +40,14 @@ namespace Tasking.Api.Controllers
             {
                 return errorResult;
             }
+
+            //registro al usuario como recurso:
+            var user = await _repo.FindUser(userModel.UserName, userModel.Password);
+            var resource = _db.Resources.Create();
+            resource.Id = user.Id;
+            _db.Resources.Add(resource);
+            await _db.SaveChangesAsync();
+
 
             return Ok();
         }

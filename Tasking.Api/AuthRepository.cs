@@ -1,4 +1,4 @@
-﻿using Tasking.API.Models;
+﻿using Tasking.API.DAL;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
@@ -9,7 +9,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace Tasking.Api
+namespace Tasking.API
 {
     public class AuthRepository : IDisposable
     {
