@@ -24,5 +24,8 @@ app.controller('indexController', ['$scope', '$location', 'authService', 'projec
         refreshProjects();
     });
 
-    
+    $scope.$on('projectDeleted', function (event, data) {
+        refreshProjects();
+    });
+
 }]);

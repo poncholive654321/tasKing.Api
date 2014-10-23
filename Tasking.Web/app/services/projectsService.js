@@ -16,8 +16,15 @@ app.factory('projectsService', ['$http', function ($http) {
         });
     };
 
+    var _deleteProject = function (projectId) {
+        return $http.delete(serviceBase + 'api/projects', { projectId: projectId }).then(function (results) {
+            return results;
+        });
+    }
+
     projectsServiceFactory.getAllProjectsByUser = _getAllProjectsByUser;
     projectsServiceFactory.createNewProject = _createNewProject;
+    projectsServiceFactory.deleteProject = _deleteProject;
 
     return projectsServiceFactory;
 
