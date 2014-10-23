@@ -46,5 +46,24 @@ namespace Tasking.API.Controllers
 
             return Ok();
         }
+
+        [Authorize]
+        [HttpDelete]
+        public async Task<IHttpActionResult> Delete(int projectId)
+        {
+            try
+            {
+                var project = await db.Projects.FindAsync(projectId);
+                db.Projects.Remove(project);
+                //await db.SaveChangesAsync();
+                return Ok();
+            }
+            catch (Exception)
+            {
+
+                return InternalServerError();
+            }
+            
+        }
     }
 }
