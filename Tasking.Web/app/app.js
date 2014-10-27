@@ -29,7 +29,27 @@ app.config(function ($routeProvider) {
 
     $routeProvider.when("/project", {
         controller: "projectController",
-        templateUrl: "/app/views/project.html"
+        templateUrl: "/app/views/project.html",
+        resolve: {
+            selected: function () {
+                return { data: undefined };
+            }
+        }
+    });
+
+    $routeProvider.when("/project/:id", {
+        controller: "projectController",
+        templateUrl: "/app/views/project.html",
+        resolve: {
+            selected: function ($route, projectsService) {
+                return projectsService.getById($route.current.params.id);
+            }
+        }
+    });
+
+    $routeProvider.when("/dashboard", {
+        controller: "dashboardController",
+        templateUrl: "/app/views/dashboard.html"
     });
 
     $routeProvider.otherwise({ redirectTo: "/home" });

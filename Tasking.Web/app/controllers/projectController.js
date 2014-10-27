@@ -1,18 +1,19 @@
 ﻿'use strict';
-app.controller('projectController', ['$scope', '$rootScope', '$location', 'projectsService', function ($scope, $rootScope, $location, projectsService) {
+app.controller('projectController', ['$scope', '$rootScope', '$location', 'projectsService', 'selected', function ($scope, $rootScope, $location, projectsService, selected) {
 
-    $scope.id = 0;
-    $scope.title = "";
-    $scope.description = "";
+    $scope.model = {};
+    $scope.model.id = 0;
+    $scope.model.title = "";
+    $scope.model.description = "";
 
     $scope.submit = function () {
-        var dto = {
-            "title": $scope.title,
-            "description": $scope.description
-        }
-        projectsService.createNewProject(dto).then(function (result) {
+        //var dto = {
+        //    "title": $scope.title,
+        //    "description": $scope.description
+        //}
+        projectsService.createNewProject($scope.model).then(function (result) {
             if (result.status == 200) {
-                $location.path('/home');
+                $location.path('/projects');
                 $rootScope.$broadcast('newProjectCreated', {});
             };
         });
@@ -20,13 +21,17 @@ app.controller('projectController', ['$scope', '$rootScope', '$location', 'proje
 
     $scope.delete = function () {
         if (confirm("This action cannot be undone...are you sure?")) {
-            projectsService.deleteProject(1).then(function (result) {
+            projectsService.deleteProject($scope.model.id).then(function (result) {
                 if (result.status == 200) {
-                    $location.path('/home');
+                    $location.path('/projects');
                     $rootScope.$broadcast('projectDeleted', {});
                 };
             });
         }
+    }
+
+    if (selected.data) {
+        $scope.model = selected.data;
     }
 
 }]);
