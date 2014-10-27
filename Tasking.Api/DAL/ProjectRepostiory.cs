@@ -24,6 +24,15 @@ namespace Tasking.API.DAL
             _db = new TaskingContext();
         }
 
+        public ProjectRepostiory(TaskingContext db)
+        {
+            _db = db;
+        }
+
+        public Task<Project> GetById(int id) {
+            return _db.Projects.FindAsync(id);
+        }
+
         public IEnumerable<Project> GetByResource(string resourceId) {
             var p = new object[] {new SqlParameter("@ResourceId", resourceId)};
             var ret  = GetObjectContext.

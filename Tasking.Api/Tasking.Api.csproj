@@ -129,6 +129,7 @@
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="DAL\ProjectRepostiory.cs" />
     <Compile Include="DAL\TaskingInitializer.cs" />
+    <Compile Include="DTO\ProjectDTOFactory.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="DAL\TaskingContext.cs" />
     <Compile Include="Models\Resource.cs" />

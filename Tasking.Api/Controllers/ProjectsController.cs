@@ -12,12 +12,17 @@ using Tasking.API.Models;
 
 namespace Tasking.API.Controllers
 {
-    [RoutePrefix("api/Orders")]
+    [RoutePrefix("api/projects")]
     public class ProjectsController : ApiController
     {
 
-        private TaskingContext db = new TaskingContext();
-        private ProjectRepostiory projects = new ProjectRepostiory();
+        private TaskingContext db;
+        private ProjectRepostiory projects;
+
+        public ProjectsController() {
+            db = new TaskingContext();
+            projects = new ProjectRepostiory(db);
+        }
 
         [Authorize]
         public async Task<IHttpActionResult> Get()
@@ -28,20 +33,38 @@ namespace Tasking.API.Controllers
         }
 
         [Authorize]
+        public async Task<IHttpActionResult> Get(int id)
+        {
+            return Ok(DTO.ProjectDTOFactory.GetProjectHeaderDto(await projects.GetById(id)));
+        }
+
+        [Authorize]
         public async Task<IHttpActionResult> Post(Project projectModel)
         {
-            var user_id = this.User.Identity.Name; //overrided: gets ASP.NET Auth user id (GUID)
-            var newProject = db.Projects.Create();
-            var resource = await db.Resources.FindAsync(user_id);
+            switch (projectModel.Action.ToUpper())
+            {
+                case "POST":
+                    var user_id = this.User.Identity.Name; //overrided: gets ASP.NET Auth user id (GUID)
+                    var newProject = db.Projects.Create();
+                    var resource = await db.Resources.FindAsync(user_id);
+                    //
+                    newProject.Title = projectModel.Title;
+                    newProject.Description = projectModel.Description;
+                    newProject.Created = DateTime.Now;
+                    newProject.Resources.Add(resource);
+                    //
+                    db.Projects.Add(newProject);
+                    break;
+                case "PUT":
+                    break;
+                case "DELETE":
+                    var project = await db.Projects.FindAsync(projectModel.Id);
+                    db.Projects.Remove(project);
+                    break;
+                default:
+                    break;
+            }
             
-            //
-            newProject.Title = projectModel.Title;
-            newProject.Description = projectModel.Description;
-            newProject.Created = DateTime.Now;
-            newProject.Resources.Add(resource);
-            //
-
-            db.Projects.Add(newProject);
             await db.SaveChangesAsync();
 
             return Ok();

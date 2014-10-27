@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Tasking.API.Models
 {
@@ -12,6 +13,9 @@ namespace Tasking.API.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime Created { get; set; }
+        
+        [NotMapped]
+        public string Action { get; set; }
 
         public virtual ICollection<Resource> Resources { get; set; }
 
