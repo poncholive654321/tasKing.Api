@@ -1,11 +1,5 @@
-﻿<div class="row">
-    <div class="col-md-12">
-        <h3>Projects <a href="#/project" style="font-size: large">New project</a></h3>
-    </div>
-    <br />
-    <br />
-    <br />
-    <br />
+﻿<h3 class="page-header">Projects <a href="#/project" style="font-size: large">Create new</a></h3>
+<div class="row">
     <!--Nav pill for "All", "Active", "Closed"-->
     <div class="col-md-12">
         
@@ -28,11 +22,16 @@
                         {{ project.description }}
                     </td>
                     <td>
-                        {{ project.created }}
+                        {{ project.created | date:"MM/dd/yyyy 'at' hh:mm a" }}
                     </td>
                     <td>
                         <a data-ng-href="#project/{{project.id}}"><i class="fa fa-edit fa-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tooltip on top"></i></a>
-                        <i class="fa fa-times fa-lg" style="color: red"></i>
+                        <i data-ng-click="delete(project.id)" class="fa fa-times fa-lg" style="color: red; cursor: pointer"></i>
+                    </td>
+                </tr>
+                <tr data-ng-show="projects.length == 0">
+                    <td colspan="4" style="text-align: center">
+                        No projects created yet. Click <a data-ng-href="#project">here</a> to create a new project.
                     </td>
                 </tr>
             </tbody>
