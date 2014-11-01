@@ -1,26 +1,260 @@
-﻿<h3>Creating a new project</h3>
-<form name="project" class="form-horizontal" novalidate>
-    <fieldset>
-        <!--<legend>Creating a new project</legend>-->
-        <div class="form-group">
-            <label for="inputEmail" class="col-lg-2 control-label">Title</label>
-            <div class="col-lg-10">
-                <input ng-model="model.title" type="text" class="form-control" required id="title" name="title" placeholder="max. 30 characters" maxlength="30">
+﻿<h3 class="page-header">Creating a new project</h3>
+
+<!--<h3>Project Timeline (upcoming tasks &Aacute; milestones)</h3>
+<h3>Project Collaborators</h3>
+<h3>Project Tasks</h3>
+<h3>Project Comments</h3>-->
+
+<div class="row">
+    <div class="col-md-3">
+        <ul class="list-group">
+            <li class="list-group-item active" data-ng-click="setSection(0)" data-ng-class="{ 'active' : section == 0 }">
+                Summary
+            </li>
+            <li class="list-group-item" data-ng-click="setSection(1)" data-ng-class="{ 'active' : section == 1 }">
+                Basic data
+            </li>
+            <li class="list-group-item" data-ng-click="setSection(2)" data-ng-class="{ 'active' : section == 2 }">
+                <span class="badge">6</span>
+                Tasks
+            </li>
+            <li class="list-group-item" data-ng-click="setSection(3)" data-ng-class="{ 'active' : section == 3 }">
+                <span class="badge">2</span>
+                Collaborators
+            </li>
+            <li class="list-group-item" data-ng-click="setSection(4)" data-ng-class="{ 'active' : section == 4 }">
+                <span class="badge">3</span>
+                Comments
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-md-9" data-ng-show="section == 0">
+        <h4 id="">Upcoming tasks</h4>
+        <div id="timeline">
+            <div class="row timeline-movement timeline-movement-top">
+                <div class="timeline-badge timeline-future-movement">
+                    <a href="#">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                </div>
+                <div class="timeline-badge timeline-filter-movement">
+                    <a href="#">
+                        <span class="glyphicon glyphicon-time"></span>
+                    </a>
+                </div>
+
+            </div>
+            <div class="row timeline-movement">
+
+                <div class="timeline-badge">
+                    <span class="timeline-balloon-date-day">18</span>
+                    <span class="timeline-balloon-date-month">APR</span>
+                </div>
+
+
+                <div class="col-sm-6  timeline-item">
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="timeline-panel credits">
+                                <ul class="timeline-panel-ul">
+                                    <li><span class="importo">Mussum ipsum cacilds</span></li>
+                                    <li><span class="causale">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </span> </li>
+                                    <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11/09/2014</small></p> </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6  timeline-item">
+                    <div class="row">
+                        <div class="col-sm-offset-1 col-sm-11">
+                            <div class="timeline-panel debits">
+                                <ul class="timeline-panel-ul">
+                                    <li><span class="importo">Mussum ipsum cacilds</span></li>
+                                    <li><span class="causale">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </span> </li>
+                                    <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11/09/2014</small></p> </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--due -->
+
+            <div class="row timeline-movement">
+
+
+                <div class="timeline-badge">
+                    <span class="timeline-balloon-date-day">13</span>
+                    <span class="timeline-balloon-date-month">APR</span>
+                </div>
+
+                <div class="col-sm-offset-6 col-sm-6  timeline-item">
+                    <div class="row">
+                        <div class="col-sm-offset-1 col-sm-11">
+                            <div class="timeline-panel debits">
+                                <ul class="timeline-panel-ul">
+                                    <li><span class="importo">Mussum ipsum cacilds</span></li>
+                                    <li><span class="causale">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </span> </li>
+                                    <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11/09/2014</small></p> </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6  timeline-item">
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="timeline-panel credits">
+                                <ul class="timeline-panel-ul">
+                                    <li><span class="importo">Mussum ipsum cacilds</span></li>
+                                    <li><span class="causale">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </span> </li>
+                                    <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11/09/2014</small></p> </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row timeline-movement">
+
+
+                <div class="timeline-badge">
+                    <span class="timeline-balloon-date-day">10</span>
+                    <span class="timeline-balloon-date-month">APR</span>
+                </div>
+
+                <div class="col-sm-offset-6 col-sm-6  timeline-item">
+                    <div class="row">
+                        <div class="col-sm-offset-1 col-sm-11">
+                            <div class="timeline-panel debits">
+                                <ul class="timeline-panel-ul">
+                                    <li><span class="importo">Mussum ipsum cacilds</span></li>
+                                    <li><span class="causale">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </span> </li>
+                                    <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11/09/2014</small></p> </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6  timeline-item">
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="timeline-panel credits">
+                                <ul class="timeline-panel-ul">
+                                    <li><span class="importo">Mussum ipsum cacilds</span></li>
+                                    <li><span class="causale">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </span> </li>
+                                    <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11/09/2014</small></p> </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
-        <div class="form-group">
-            <label for="textArea" class="col-lg-2 control-label">Description</label>
-            <div class="col-lg-10">
-                <textarea ng-model="model.description" class="form-control" rows="3" required id="desciption" name="description" placeholder="max. 200 characters" maxlength="200"></textarea>
-                <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
+    </div>
+
+    <div class="col-md-9" data-ng-show="section == 1">
+        <h4>Basic data</h4>
+        <form name="project" class="form-horizontal" novalidate>
+            <fieldset>
+                <!--<legend>Creating a new project</legend>-->
+                <div class="form-group">
+                    <label for="inputEmail" class="col-lg-2 control-label">Title</label>
+                    <div class="col-lg-10">
+                        <input ng-model="model.title" type="text" class="form-control" required id="title" name="title" placeholder="max. 30 characters" maxlength="30">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="textArea" class="col-lg-2 control-label">Description</label>
+                    <div class="col-lg-10">
+                        <textarea ng-model="model.description" class="form-control" rows="3" required id="desciption" name="description" placeholder="max. 200 characters" maxlength="200"></textarea>
+                        <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <a href="#/projects" class="btn btn-default">Cancel</a>
+                        <a ng-click="submit()" class="btn btn-primary" ng-disabled="!project.$valid">Submit</a>
+                        <a data-ng-show="model.id != 0" ng-click="delete()" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+    <!---comments -->
+    <div class="col-md-9" data-ng-show="section == 4">
+        <div class="row">
+            <div class="col-lg-12 col-sm-8 col-xs-12">
+                <h4 id="addComment">Leave a Comment:</h4>
+                <p class="well">Please <a href="#">sign in</a> to add comments!</p>
+                <hr>
+                <ul class="media-list comments">
+                    <li class="media">
+                        <a class="pull-left" href="#">
+                            <img class="media-object img-circle img-thumbnail" src="http://snipplicious.com/images/guest.png" width="64" alt="Generic placeholder image">
+                        </a>
+                        <div class="media-body">
+                            <h5 class="media-heading pull-left">loneswan</h5>
+                            <div class="comment-info pull-left">
+                                <div class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="Sent from ***0.0.1"><i class="fa fa-user"></i></div>
+                                <div class="btn btn-primary btn-xs"><a class="fa fa-envelope white" href="mailto:loneswan@loneswan.net"></a></div>
+                                <div class="btn btn-default btn-xs"><i class="fa fa-clock-o"></i> Posted 3 weeks ago</div>
+                            </div>
+                            <br class="clearfix">
+                            <p class="well">This is really awesome snippet!</p>
+                        </div>
+                    </li>
+                    <li class="media">
+                        <a class="pull-left" href="#">
+                            <img class="media-object img-circle img-thumbnail" src="http://snipplicious.com/images/guest.png" width="64" alt="Generic placeholder image">
+                        </a>
+                        <div class="media-body">
+                            <h5 class="media-heading pull-left">loneswan</h5>
+                            <div class="comment-info pull-left">
+                                <div class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="Sent from ***0.0.1"><i class="fa fa-user"></i></div>
+                                <div class="btn btn-primary btn-xs"><a class="fa fa-envelope white" href="mailto:loneswan@loneswan.net"></a></div>
+                                <div class="btn btn-default btn-xs"><i class="fa fa-clock-o"></i> Posted 3 weeks ago</div>
+                            </div>
+                            <br class="clearfix">
+                            <p class="well">This is really awesome snippet!</p>
+                        </div>
+                    </li>
+                    <li class="media">
+                        <a class="pull-left" href="#">
+                            <img class="media-object img-circle img-thumbnail" src="http://snipplicious.com/images/guest.png" width="64" alt="Generic placeholder image">
+                        </a>
+                        <div class="media-body">
+                            <h5 class="media-heading pull-left">loneswan</h5>
+                            <div class="comment-info pull-left">
+                                <div class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="Sent from ***0.0.1"><i class="fa fa-user"></i></div>
+                                <div class="btn btn-primary btn-xs"><a class="fa fa-envelope white" href="mailto:loneswan@loneswan.net"></a></div>
+                                <div class="btn btn-default btn-xs"><i class="fa fa-clock-o"></i> Posted 3 weeks ago</div>
+                            </div>
+                            <br class="clearfix">
+                            <p class="well">This is really awesome snippet!</p>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="form-group">
-            <div class="col-lg-10 col-lg-offset-2">
-                <a href="#/projects" class="btn btn-default">Cancel</a>
-                <a ng-click="submit()" class="btn btn-primary" ng-disabled="!project.$valid">Submit</a>
-                <a ng-click="delete()" class="btn btn-danger">Delete</a>
-            </div>
-        </div>
-    </fieldset>
-</form>
+    </div>
+    <!---comments -->
+
+</div>

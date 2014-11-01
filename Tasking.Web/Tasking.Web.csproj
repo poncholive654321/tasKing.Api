@@ -58,10 +58,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\controllers\collaboratorsController.js" />
     <Content Include="app\controllers\dashboardController.js" />
     <Content Include="app\controllers\homeController.js" />
     <Content Include="app\controllers\indexController.js" />
     <Content Include="app\controllers\loginController.js" />
+    <Content Include="app\controllers\commentsController.js" />
+    <Content Include="app\controllers\profileController.js" />
     <Content Include="app\controllers\projectController.js" />
     <Content Include="app\controllers\projectsController.js" />
     <Content Include="app\controllers\ordersController.js" />
@@ -70,9 +73,13 @@
     <Content Include="app\services\authService.js" />
     <Content Include="app\services\projectsService.js" />
     <Content Include="app\services\ordersService.js" />
+    <Content Include="app\views\colaborators.html" />
+    <Content Include="app\views\collaborators.html" />
     <Content Include="app\views\dashboard.html" />
     <Content Include="app\views\home.html" />
     <Content Include="app\views\login.html" />
+    <Content Include="app\views\comments.html" />
+    <Content Include="app\views\profile.html" />
     <Content Include="app\views\project.html" />
     <Content Include="app\views\projects.html" />
     <Content Include="app\views\orders.html" />
@@ -89,6 +96,7 @@
     <Content Include="index.html" />
     <Content Include="scripts\angular-local-storage.min.js" />
     <Content Include="scripts\loading-bar.min.js" />
+    <Content Include="scripts\ui-bootstrap-tpls-0.11.2.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

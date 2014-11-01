@@ -1,4 +1,4 @@
-﻿var app = angular.module('tasKingWebApp', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar']);
+﻿var app = angular.module('tasKingWebApp', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar', 'ui.bootstrap']);
 
 app.config(function ($routeProvider) {
 
@@ -45,6 +45,31 @@ app.config(function ($routeProvider) {
                 return projectsService.getById($route.current.params.id);
             }
         }
+    });
+
+    $routeProvider.when("/collaborators", {
+        controller: "collaboratorsController",
+        templateUrl: "/app/views/collaborators.html",
+        resolve: {
+            selected: function () {
+                return { data: undefined };
+            }
+        }
+    });
+
+    $routeProvider.when("/comments", {
+        controller: "commentsController",
+        templateUrl: "/app/views/comments.html",
+        resolve: {
+            selected: function () {
+                return { data: undefined };
+            }
+        }
+    });
+
+    $routeProvider.when("/profile", {
+        controller: "profileController",
+        templateUrl: "/app/views/profile.html"
     });
 
     $routeProvider.when("/dashboard", {

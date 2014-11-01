@@ -7,6 +7,190 @@
     <link href="content/css/site.css" rel="stylesheet" />
     <link href="content/css/loading-bar.css" rel="stylesheet" />
     <link href="content/font-awesome.min.css" rel="stylesheet" />
+
+    <style>
+        .nav, .pagination, .carousel, .panel-title a {
+            cursor: pointer;
+        }
+    </style>
+
+    <style>
+        #timeline {
+            list-style: none;
+            position: relative;
+        }
+
+            #timeline:before {
+                top: 0;
+                bottom: 0;
+                position: absolute;
+                content: " ";
+                width: 2px;
+                background-color: #4997cd;
+                left: 50%;
+                margin-left: -1.5px;
+            }
+
+            #timeline .clearFix {
+                clear: both;
+                height: 0;
+            }
+
+            #timeline .timeline-badge {
+                color: #fff;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2em;
+                text-align: center;
+                position: absolute;
+                top: 20px;
+                left: 50%;
+                margin-left: -25px;
+                background-color: #4997cd;
+                z-index: 100;
+                border-top-right-radius: 50%;
+                border-top-left-radius: 50%;
+                border-bottom-right-radius: 50%;
+                border-bottom-left-radius: 50%;
+            }
+
+                #timeline .timeline-badge span.timeline-balloon-date-day {
+                    font-size: 1.4em;
+                }
+
+                #timeline .timeline-badge span.timeline-balloon-date-month {
+                    font-size: .7em;
+                    position: relative;
+                    top: -10px;
+                }
+
+                #timeline .timeline-badge.timeline-filter-movement {
+                    background-color: #ffffff;
+                    font-size: 1.7em;
+                    height: 35px;
+                    margin-left: -18px;
+                    width: 35px;
+                    top: 40px;
+                }
+
+                    #timeline .timeline-badge.timeline-filter-movement a span {
+                        color: #4997cd;
+                        font-size: 1.3em;
+                        top: -1px;
+                    }
+
+                #timeline .timeline-badge.timeline-future-movement {
+                    background-color: #ffffff;
+                    height: 35px;
+                    width: 35px;
+                    font-size: 1.7em;
+                    top: -16px;
+                    margin-left: -18px;
+                }
+
+                    #timeline .timeline-badge.timeline-future-movement a span {
+                        color: #4997cd;
+                        font-size: .9em;
+                        top: 2px;
+                        left: 1px;
+                    }
+
+            #timeline .timeline-movement {
+                border-bottom: dashed 1px #4997cd;
+                position: relative;
+            }
+
+                #timeline .timeline-movement.timeline-movement-top {
+                    height: 60px;
+                }
+
+                #timeline .timeline-movement .timeline-item {
+                    padding: 20px 0;
+                }
+
+                    #timeline .timeline-movement .timeline-item .timeline-panel {
+                        border: 1px solid #d4d4d4;
+                        border-radius: 3px;
+                        background-color: #FFFFFF;
+                        color: #666;
+                        padding: 10px;
+                        position: relative;
+                        -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+                        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+                    }
+
+                        #timeline .timeline-movement .timeline-item .timeline-panel .timeline-panel-ul {
+                            list-style: none;
+                            padding: 0;
+                            margin: 0;
+                        }
+
+                        #timeline .timeline-movement .timeline-item .timeline-panel.credits .timeline-panel-ul {
+                            text-align: right;
+                        }
+
+                            #timeline .timeline-movement .timeline-item .timeline-panel.credits .timeline-panel-ul li {
+                                color: #666;
+                            }
+
+                                #timeline .timeline-movement .timeline-item .timeline-panel.credits .timeline-panel-ul li span.importo {
+                                    color: #468c1f;
+                                    font-size: 1.3em;
+                                }
+
+                        #timeline .timeline-movement .timeline-item .timeline-panel.debits .timeline-panel-ul {
+                            text-align: left;
+                        }
+
+                            #timeline .timeline-movement .timeline-item .timeline-panel.debits .timeline-panel-ul span.importo {
+                                color: #e2001a;
+                                font-size: 1.3em;
+                            }
+    </style>
+
+    <style>
+        .comments .media-heading {
+            margin-top: 25px;
+        }
+
+        .comments .comment-info {
+            margin-left: 6px;
+            margin-top: 21px;
+        }
+
+            .comments .comment-info .btn {
+                font-size: 0.8em;
+            }
+
+            .comments .comment-info .fa {
+                line-height: 10px;
+            }
+
+        .comments .media-body p {
+            position: relative;
+            background: #F7F7F7;
+            padding: 15px;
+            margin-top: 50px;
+        }
+
+            .comments .media-body p::before {
+                background-color: #F7F7F7;
+                box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4 );
+                content: "\00a0";
+                display: block;
+                height: 30px;
+                left: 20px;
+                position: absolute;
+                top: -13px;
+                transform: rotate( 135deg );
+                width: 30px;
+            }
+
+        .white {
+            color: #fff;
+        }
+    </style>
+
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 </head>
 <body>
@@ -16,12 +200,25 @@
                 <button class="btn btn-success navbar-toggle" data-ng-click="navbarExpanded = !navbarExpanded">
                     <span class="glyphicon glyphicon-chevron-down"></span>
                 </button>
-                <a class="navbar-brand" href="#/">tasKing</a>
+                <a class="navbar-brand" href="#dashboard">tasKing</a>
             </div>
-            <div class="collapse navbar-collapse" data-collapse="!navbarExpanded">
+
+            <div class="navbar-collapse collapse navbar-inverse-collapse">
+                <ul class="nav navbar-nav">
+                    <li data-ng-hide="!authentication.isAuth" class="dropdown">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-navicon"></i><span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <!--<li ng-repeat="project in projects"><a href="#/project">{{project.title}}</a></li>-->
+                            <!--<li class="divider"></li>-->
+                            <li><a ng-href="#dashboard">Dashboard</a></li>
+                            <li><a ng-href="#projects">Projects</a></li>
+                            <!--<li><a ng-href="#comments">Comments</a></li>-->
+                            <li><a ng-href="#collaborators">Collaborators</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
                 <ul class="nav navbar-nav navbar-right">
-                    <!--<li data-ng-hide="!authentication.isAuth"><a href="#">Welcome {{authentication.userName}}</a></li>-->
-                    <!--<li data-ng-hide="!authentication.isAuth"><a href="#/projects">My Projects</a></li>-->
                     <li data-ng-hide="!authentication.isAuth" class="dropdown">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i><span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
@@ -30,29 +227,19 @@
                             <li><a>All quiet...</a></li>
                         </ul>
                     </li>
-
                     <li data-ng-hide="!authentication.isAuth" class="dropdown">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">Welcome {{authentication.userName}}</i><span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#/project">Profile</a></li>
+                            <li><a href="#/profile">Profile</a></li>
                             <li class="divider"></li>
                             <li data-ng-hide="!authentication.isAuth"><a href="" data-ng-click="logOut()">Logout</a></li>
                         </ul>
                     </li>
-
-                    <!--<li data-ng-hide="!authentication.isAuth" class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown">Projects <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li ng-repeat="project in projects"><a href="#/project">{{project.title}}</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#/project">Create new</a></li>
-                        </ul>
-                    </li>-->
-                    <!--<li data-ng-hide="!authentication.isAuth"><a href="" data-ng-click="logOut()">Logout</a></li>-->
-                    <li data-ng-hide="authentication.isAuth"> <a href="#/login">Login</a></li>
-                    <li data-ng-hide="authentication.isAuth"> <a href="#/signup">Sign Up</a></li>
                 </ul>
             </div>
+
+
+
         </div>
     </div>
     <!--<div class="jumbotron">
@@ -65,7 +252,7 @@
     </div>-->
     <div class="container">
 
-        <div class="col-md-2">
+        <!--<div class="col-md-2">
             &nbsp;
             <div class="list-group">
                 <a href="#/dashboard" class="list-group-item active">
@@ -78,9 +265,9 @@
                     Collaborators
                 </a>
             </div>
-        </div>
+        </div>-->
 
-        <div class="col-md-10" data-ng-view="">
+        <div class="col-md-12" data-ng-view="">
         </div>
     </div>
     <hr />
@@ -103,6 +290,7 @@
     <script src="http://bootswatch.com/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="scripts/angular-local-storage.min.js"></script>
     <script src="scripts/loading-bar.min.js"></script>
+    <script src="scripts/ui-bootstrap-tpls-0.11.2.min.js"></script>
     <!-- Load app main script -->
     <script src="app/app.js"></script>
     <!-- Load services -->

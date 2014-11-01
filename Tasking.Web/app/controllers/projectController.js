@@ -6,6 +6,11 @@ app.controller('projectController', ['$scope', '$rootScope', '$location', 'proje
     $scope.model.title = "";
     $scope.model.description = "";
 
+    $scope.section = 0;
+    $scope.setSection = function (indx) {
+        $scope.section = indx;
+    }
+
     $scope.submit = function () {
         //var dto = {
         //    "title": $scope.title,
