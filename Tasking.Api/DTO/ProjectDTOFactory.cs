@@ -9,7 +9,7 @@ namespace Tasking.API.DTO
     public class ProjectDTOFactory
     {
         public static dynamic GetProjectHeaderDto(Project origin) {
-            return new { Title = origin.Title, Description = origin.Description, Created = origin.Created, Resources = origin.Resources.Count };
+            return new { Id = origin.Id, Title = origin.Title, Description = origin.Description, Created = origin.Created, Resources = origin.Resources.Count };
         }
     }
 }
